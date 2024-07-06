@@ -24,6 +24,8 @@ export const createReferral = async (req, res) => {
     }
   } catch (error) {
     console.log(error);
-    return res.json(error);
+    return res.json({
+      msg: "Something went wrong"
+    });
   }
 };

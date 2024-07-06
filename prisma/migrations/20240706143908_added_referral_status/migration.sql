@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE `Referral` ADD COLUMN `referral_status` ENUM('PENDING', 'SUCCESS', 'EXPIRED') NOT NULL DEFAULT 'PENDING';
