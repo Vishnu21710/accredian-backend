@@ -11,6 +11,13 @@ export const authSignin = async(req, res)=>{
             },
             
         })
+
+        console.log(user, "USER");
+
+        if(user === null){
+            throw new Error("Invalid Credentials")
+        }
+
         if(user){
             //compare password
             const password = await bcrypt.compare(body.password, user.password)
@@ -33,10 +40,13 @@ export const authSignin = async(req, res)=>{
                 }
             })
         }
+
+        
     } catch (error) {
-        //send back error        
+        //send back error  
+        console.log(error);      
         return res.json({
-            msg: String(error)
+            msg: "Invailid Credentials, Try again"
         })
     }
 }
