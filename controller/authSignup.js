@@ -1,6 +1,7 @@
 import {db} from '../db/index.js'
 import bcrypt from 'bcrypt'
 import jwt from "jsonwebtoken"
+import { generateRandomCode } from '../lib.js'
 
 export const authSignup = async(req, res)=>{
     const body = req.body
@@ -10,10 +11,12 @@ export const authSignup = async(req, res)=>{
             data:{
                 email: body.email,
                 name: body.name,
-                password: await bcrypt.hash(body.password, 10),   
+                password: await bcrypt.hash(body.password, 10),  
+                code: generateRandomCode() 
             }
         })
         
+        console.log(newUser);
 
         if(newUser){
             const payload = {
@@ -33,7 +36,7 @@ export const authSignup = async(req, res)=>{
         console.log(error);
         
         return res.json({
-            msg: String(error)
+            msg: "Failed to signup"
         })
     }
 }

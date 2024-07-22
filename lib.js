@@ -30,3 +30,16 @@ export const sendMail = (from_name,to, code)=>{
         }
       });
 }
+
+export const generateRandomCode = ()=> {
+  const prefix = "ACC";
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let randomCode = prefix;
+  
+  for (let i = 0; i < 5; i++) {
+      const randomIndex = Math.floor(Math.random() * characters.length);
+      randomCode += characters[randomIndex];
+  }
+  
+  return randomCode;
+}
